@@ -1,0 +1,41 @@
+<mat-sidenav-container class="sidenav-container">
+  <mat-sidenav #drawer class="sidenav" fixedInViewport="true"
+      [attr.role]="(isHandset$ | async) ? 'dialog' : 'navigation'"
+      [mode]="(isHandset$ | async) ? 'over' : 'side'"
+      [opened]="!(isHandset$ | async)">
+    <mat-toolbar>Users</mat-toolbar>
+    <mat-nav-list>
+      <div *ngIf="users" style="list-style-type:none">
+          <div *ngFor="let user of users.data">
+            <div class="card" style="position: relative;" (click)="userClicked(user.user_id)">
+              <p>{{ user.username }}</p>
+            </div>
+          </div>
+      </div>
+      <!-- <ul *ngIf="users" style="list-style-type:none">
+        <li *ngFor="let user of users.data">
+          <div class="card-body">
+            <p>{{ user.username }}</p>
+          </div>
+        </li>
+      </ul> -->
+    </mat-nav-list>
+  </mat-sidenav>
+  <mat-sidenav-content>
+    <mat-toolbar color="primary">
+      <button
+        type="button"
+        aria-label="Toggle sidenav"
+        mat-icon-button
+        (click)="drawer.toggle()"
+        >
+        <mat-icon aria-label="Side nav toggle icon">menu</mat-icon>
+      </button>
+      <span>sscd-web</span>
+    </mat-toolbar>
+    <!-- Add Content Here -->
+    <agm-map [latitude]="lat" [longitude]="lng" [zoom]="18" [streetViewControl]="false">
+      <agm-marker [latitude]="lat" [longitude]="lng"></agm-marker>
+    </agm-map>
+  </mat-sidenav-content>
+</mat-sidenav-container>
