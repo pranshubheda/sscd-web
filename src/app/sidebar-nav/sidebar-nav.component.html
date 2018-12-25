@@ -3,11 +3,12 @@
       [attr.role]="(isHandset$ | async) ? 'dialog' : 'navigation'"
       [mode]="(isHandset$ | async) ? 'over' : 'side'"
       [opened]="!(isHandset$ | async)">
-    <mat-toolbar>Users</mat-toolbar>
+    <mat-toolbar style="justify-content: center">Users</mat-toolbar>
     <mat-nav-list>
       <div *ngIf="users" style="list-style-type:none">
-          <div *ngFor="let user of users.data">
-            <div class="card" style="position: relative;" (click)="userClicked(user.user_id)">
+          <div *ngFor="let user of users.data" >
+            <div class="card" style="position: relative;" (click)="userClicked(user.user_id)"
+              [ngClass]="{'selected-user': user_id_selected==user.user_id}">
               <p>{{ user.username }}</p>
             </div>
           </div>

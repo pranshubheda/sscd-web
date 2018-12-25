@@ -25,3 +25,7 @@ agm-map {
   color: grey;
   text-align: center;
 }
+
+.selected-user {
+  color: red;
+}

@@ -15,6 +15,7 @@ export class SidebarNavComponent {
   lat: number = 93.08492480777204;
   lng: number = -27.65527105890214;
   users: Object;
+  user_id_selected: string = null;
   
   isHandset$: Observable<boolean> = this.breakpointObserver
     .observe(Breakpoints.Handset)
@@ -34,7 +35,8 @@ export class SidebarNavComponent {
   }
   
   userClicked(user_id) {
-    
+    this.user_id_selected = user_id;
+
     this.userDataService.getUserLocation(user_id).subscribe((userLocation) => {
       this.lat = parseFloat(userLocation.latitude);
       this.lng = parseFloat(userLocation.longitude);
